@@ -2,59 +2,125 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Simple Styled Page</title>
+  <title>Enhanced Webpage</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      margin: 0;
-      padding: 20px;
+    * {
+      box-sizing: border-box;
     }
 
-    h1 {
-      color: #333;
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #343a40;
+      color: white;
+      padding: 15px 30px;
       text-align: center;
+    }
+
+    nav {
+      background-color: #007BFF;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px 0;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #ffc107;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 30px;
+      gap: 20px;
     }
 
     .card {
       background-color: white;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 20px;
-      margin: 20px auto;
-      max-width: 400px;
+      border-radius: 10px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 20px;
+      width: 300px;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
 
     .button {
       display: inline-block;
-      padding: 10px 20px;
-      background-color: #007BFF;
+      margin-top: 10px;
+      padding: 10px 15px;
+      background-color: #28a745;
       color: white;
-      text-decoration: none;
       border-radius: 5px;
+      text-decoration: none;
       transition: background-color 0.3s ease;
     }
 
     .button:hover {
-      background-color: #0056b3;
+      background-color: #218838;
+    }
+
+    footer {
+      background-color: #343a40;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
     }
   </style>
 </head>
 <body>
 
-  <h1>Welcome to My Simple Page</h1>
+  <header>
+    <h1>My Stylish Webpage</h1>
+  </header>
 
-  <div class="card">
-    <p>This is a simple card with hover effects. Move your mouse over it to see the animation.</p>
-    <a href="#" class="button">Click Me</a>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Projects</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <div class="container">
+    <div class="card">
+      <h3>Card One</h3>
+      <p>This is the first card. Hover to see the effect!</p>
+      <a href="#" class="button">Learn More</a>
+    </div>
+    <div class="card">
+      <h3>Card Two</h3>
+      <p>This is the second card. Stylish and responsive.</p>
+      <a href="#" class="button">Explore</a>
+    </div>
+    <div class="card">
+      <h3>Card Three</h3>
+      <p>Third card with smooth transitions and layout.</p>
+      <a href="#" class="button">Discover</a>
+    </div>
   </div>
+
+  <footer>
+    &copy; 2025 My Webpage. All rights reserved.
+  </footer>
 
 </body>
 </html>
