@@ -1,0 +1,593 @@
+<!-- countries.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countries - World Wonders Travel</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .countries {
+      padding: 70px 20px;
+      max-width: 1300px;
+      margin: auto;
+      text-align: center;
+      background: url('img/bg2.gif') no-repeat center center;
+      background-size: cover;
+      position: relative;
+      color: #fff;
+    }
+    .countries::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 86, 179, 0.6);
+      z-index: 0;
+    }
+    .countries h2, .countries p, .country-list {
+      position: relative;
+      z-index: 1;
+    }
+    .countries h2 {
+      font-size: 2.8rem;
+      margin-bottom: 15px;
+      color: #fff;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+    }
+    .countries p {
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    .country-list {
+	  display: grid;
+	  grid-template-columns: repeat(3, 1fr); 
+	  gap: 30px;
+	  max-width: 1100px;  
+	  margin: 0 auto;     
+	}
+    .country-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+      height: 100%;
+    }
+    .country-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+    .country-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .country-card h3 {
+      padding: 15px;
+      margin: 0;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #0056b3;
+      background: #f1f1f1;
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+
+    /* --- Country Modal --- */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      overflow-y: auto;
+      padding: 20px;
+    }
+    .modal-content {
+      background: #fff;
+      padding: 20px;
+      max-width: 900px;
+      width: 100%;
+      border-radius: 10px;
+      text-align: center;
+      position: relative;
+    }
+    .modal-content img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+    .modal-content h3 {
+      margin-bottom: 10px;
+      font-size: 1.8rem;
+      color: #0056b3;
+    }
+    .modal-content p { font-size: 1rem; color: #444; }
+    .close-btn {
+      position: absolute; top: 10px; right: 15px;
+      font-size: 1.5rem; cursor: pointer; font-weight: bold;
+      color: #333;
+    }
+    .close-btn:hover { color: red; }
+
+    /* --- Wonders --- */
+    .wonder-list {
+	  margin-top: 20px;
+	  display: grid;
+	  grid-template-columns: repeat(3, 1fr); /* 3 per row */
+	  gap: 20px;
+	  max-width: 900px;
+	  margin-left: auto;
+	  margin-right: auto;
+	}
+    .wonder-card {
+      background: #f9f9f9;
+      border-radius: 8px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      padding: 15px;
+      text-align: left;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .wonder-card:hover { transform: scale(1.03); }
+    .wonder-card img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+    .wonder-card h4 { color: #0056b3; margin-bottom: 5px; }
+    .wonder-card p { font-size: 0.9rem; color: #555; }
+
+    /* --- Hotels Modal --- */
+    .hotels {
+      margin-top: 15px;
+      text-align: left;
+    }
+    .hotel {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+    .hotel h5 {
+      margin: 0;
+      font-size: 1rem;
+      color: #333;
+    }
+    .hotel span {
+      font-size: 0.9rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">World Wonders</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="countries.html" class="active">Countries</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="tips.html">Travel Tips</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Countries -->
+  <section class="countries">
+    <h2>Explore Countries</h2>
+    <div class="country-list">
+      <div class="country-card" data-modal="italyModal">
+        <img src="img/italy.jpg" alt="Italy">
+        <h3>Italy</h3>
+      </div>
+	  <div class="country-card" data-modal="japanModal">
+        <img src="img/japan.jpg" alt="Italy">
+        <h3>Japan</h3>
+      </div>
+	  <div class="country-card" data-modal="egyptModal">
+        <img src="img/egypt.jpg" alt="Italy">
+        <h3>Egypt</h3>
+      </div>
+	  <div class="country-card" data-modal="brazilModal">
+        <img src="img/brazil.jpg" alt="Italy">
+        <h3>Brazil</h3>
+		</div>
+		<div class="country-card" data-modal="australiaModal">
+        <img src="img/australia.jpg" alt="Italy">
+        <h3>Australia</h3>
+      </div>
+      </div>
+  </section>
+
+  <div id="italyModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <img src="img/italy.jpg" alt="Italy">
+      <h3>Italy</h3>
+      <p>Italy is famous for its rich history, art, and cuisine. Here are some iconic wonders you can explore:</p>
+
+      <div class="wonder-list">
+        <div class="wonder-card" data-hotels="colosseumHotels">
+          <img src="img/colosseo.jpg" alt="Colosseum">
+          <h4>Colosseum</h4>
+          <p>Rome’s ancient amphitheater, symbol of the Roman Empire.</p>
+        </div>
+        <div class="wonder-card" data-hotels="leaningTowerHotels">
+          <img src="img/tower.jpg" alt="Leaning Tower of Pisa">
+          <h4>Leaning Tower of Pisa</h4>
+          <p>Famous tilted tower and UNESCO World Heritage site.</p>
+        </div>
+        <div class="wonder-card" data-hotels="veniceHotels">
+          <img src="img/venice.jpg" alt="Venice Canals">
+          <h4>Venice Canals</h4>
+          <p>Romantic waterways with gondolas and historic bridges.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="colosseumHotels" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h3>Hotels near Colosseum</h3>
+      <div class="hotels">
+        <div class="hotel"><h5>Hotel Roma</h5><span>500m away • ★★★★</span></div>
+        <div class="hotel"><h5>Colosseum View Inn</h5><span>200m away • ★★★</span></div>
+        <div class="hotel"><h5>Luxury Rome Suites</h5><span>1km away • ★★★★★</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="leaningTowerHotels" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h3>Hotels near Leaning Tower of Pisa</h3>
+      <div class="hotels">
+        <div class="hotel"><h5>Pisa Central Hotel</h5><span>300m away • ★★★</span></div>
+        <div class="hotel"><h5>Tower View Lodge</h5><span>150m away • ★★★★</span></div>
+        <div class="hotel"><h5>Pisa Royal Suites</h5><span>700m away • ★★★★★</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="veniceHotels" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h3>Hotels near Venice Canals</h3>
+      <div class="hotels">
+        <div class="hotel"><h5>Canal View Hotel</h5><span>100m away • ★★★★</span></div>
+        <div class="hotel"><h5>Venetian Dreams</h5><span>300m away • ★★★</span></div>
+        <div class="hotel"><h5>Grand Venice Palace</h5><span>500m away • ★★★★★</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Japan Modal with Wonders -->
+  <div id="japanModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <img src="img/japan.jpg" alt="Japan">
+      <h3>Japan</h3>
+      <p>Japan blends tradition with innovation, offering historic temples and modern marvels.</p>
+
+      <div class="wonder-list">
+        <div class="wonder-card" data-hotels="mtFujiHotels">
+          <img src="img/mtfuji.jpg" alt="Mount Fuji">
+          <h4>Mount Fuji</h4>
+          <p>Japan’s iconic volcanic peak and sacred mountain.</p>
+        </div>
+        <div class="wonder-card" data-hotels="kyotoHotels">
+          <img src="img/kyoto.jpg" alt="Kyoto Temples">
+          <h4>Kyoto Temples</h4>
+          <p>Historic shrines and temples preserving Japan’s culture.</p>
+        </div>
+        <div class="wonder-card" data-hotels="tokyoTowerHotels">
+          <img src="img/tokyotower.jpg" alt="Tokyo Tower">
+          <h4>Tokyo Tower</h4>
+          <p>Modern landmark offering panoramic city views.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hotels for Japan Wonders -->
+  <div id="mtFujiHotels" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h3>Hotels near Mount Fuji</h3>
+      <div class="hotels">
+        <div class="hotel"><h5>Fuji View Hotel</h5><span>2km away • ★★★★</span></div>
+        <div class="hotel"><h5>Lake Kawaguchi Inn</h5><span>1.5km away • ★★★</span></div>
+        <div class="hotel"><h5>Fuji Luxury Resort</h5><span>3km away • ★★★★★</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="kyotoHotels" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h3>Hotels near Kyoto Temples</h3>
+      <div class="hotels">
+        <div class="hotel"><h5>Kyoto Garden Inn</h5><span>500m away • ★★★</span></div>
+        <div class="hotel"><h5>Temple View Hotel</h5><span>300m away • ★★★★</span></div>
+        <div class="hotel"><h5>Kyoto Imperial Suites</h5><span>1km away • ★★★★★</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="tokyoTowerHotels" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h3>Hotels near Tokyo Tower</h3>
+      <div class="hotels">
+        <div class="hotel"><h5>Tokyo Central Hotel</h5><span>200m away • ★★★★</span></div>
+        <div class="hotel"><h5>Tower View Inn</h5><span>100m away • ★★★</span></div>
+        <div class="hotel"><h5>Luxury Tokyo Suites</h5><span>500m away • ★★★★★</span></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Egypt Modal with Wonders -->
+  <div id="egyptModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <img src="img/egypt.jpg" alt="Egypt">
+      <h3>Egypt</h3>
+      <p>Egypt is home to ancient wonders and timeless monuments along the Nile.</p>
+
+      <div class="wonder-list">
+        <div class="wonder-card" data-hotels="pyramidsHotels">
+          <img src="img/pyramids.jpg" alt="Pyramids of Giza">
+          <h4>Pyramids of Giza</h4>
+          <p>One of the Seven Wonders of the Ancient World.</p>
+        </div>
+        <div class="wonder-card" data-hotels="sphinxHotels">
+          <img src="img/sphinx.jpg" alt="Great Sphinx">
+          <h4>Great Sphinx</h4>
+          <p>Mythical limestone statue with a lion’s body.</p>
+        </div>
+        <div class="wonder-card" data-hotels="luxorHotels">
+          <img src="img/luxor.jpg" alt="Luxor Temple">
+          <h4>Luxor Temple</h4>
+          <p>Ancient Egyptian temple complex on the east bank of the Nile.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hotels for Egypt Wonders -->
+  <div id="pyramidsHotels" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h3>Hotels near Pyramids of Giza</h3>
+      <div class="hotels">
+        <div class="hotel"><h5>Pyramid View Inn</h5><span>400m away • ★★★</span></div>
+        <div class="hotel"><h5>Giza Grand Hotel</h5><span>600m away • ★★★★</span></div>
+        <div class="hotel"><h5>Royal Cairo Suites</h5><span>1km away • ★★★★★</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="sphinxHotels" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h3>Hotels near Great Sphinx</h3>
+      <div class="hotels">
+        <div class="hotel"><h5>Sphinx Inn</h5><span>200m away • ★★★</span></div>
+        <div class="hotel"><h5>Guardian Hotel</h5><span>500m away • ★★★★</span></div>
+        <div class="hotel"><h5>Cairo Luxury Suites</h5><span>1.2km away • ★★★★★</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="luxorHotels" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h3>Hotels near Luxor Temple</h3>
+      <div class="hotels">
+        <div class="hotel"><h5>Luxor Riverside Hotel</h5><span>300m away • ★★★</span></div>
+        <div class="hotel"><h5>Temple View Inn</h5><span>200m away • ★★★★</span></div>
+        <div class="hotel"><h5>Luxor Grand Palace</h5><span>800m away • ★★★★★</span></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Brazil Modal with Wonders -->
+  <div id="brazilModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <img src="img/brazil.jpg" alt="Brazil">
+      <h3>Brazil</h3>
+      <p>Brazil is vibrant with culture, music, and breathtaking natural landmarks.</p>
+
+      <div class="wonder-list">
+        <div class="wonder-card" data-hotels="christHotels">
+          <img src="img/christ.jpg" alt="Christ the Redeemer">
+          <h4>Christ the Redeemer</h4>
+          <p>Iconic statue overlooking Rio de Janeiro.</p>
+        </div>
+        <div class="wonder-card" data-hotels="iguazuHotels">
+          <img src="img/iguazu.jpg" alt="Iguazu Falls">
+          <h4>Iguazu Falls</h4>
+          <p>Massive waterfalls on the Brazil–Argentina border.</p>
+        </div>
+        <div class="wonder-card" data-hotels="amazonHotels">
+          <img src="img/amazon.jpg" alt="Amazon Rainforest">
+          <h4>Amazon Rainforest</h4>
+          <p>World’s largest tropical rainforest, rich in biodiversity.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hotels for Brazil Wonders -->
+  <div id="christHotels" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h3>Hotels near Christ the Redeemer</h3>
+      <div class="hotels">
+        <div class="hotel"><h5>Rio Central Inn</h5><span>2km away • ★★★</span></div>
+        <div class="hotel"><h5>Statue View Hotel</h5><span>1km away • ★★★★</span></div>
+        <div class="hotel"><h5>Rio Luxury Suites</h5><span>3km away • ★★★★★</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="iguazuHotels" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h3>Hotels near Iguazu Falls</h3>
+      <div class="hotels">
+        <div class="hotel"><h5>Iguazu Lodge</h5><span>500m away • ★★★</span></div>
+        <div class="hotel"><h5>Falls View Inn</h5><span>300m away • ★★★★</span></div>
+        <div class="hotel"><h5>Grand Iguazu Hotel</h5><span>1.5km away • ★★★★★</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="amazonHotels" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h3>Hotels near Amazon Rainforest</h3>
+      <div class="hotels">
+        <div class="hotel"><h5>Amazon Eco Lodge</h5><span>2km away • ★★★</span></div>
+        <div class="hotel"><h5>Rainforest Retreat</h5><span>3km away • ★★★★</span></div>
+        <div class="hotel"><h5>Luxury Amazon Resort</h5><span>5km away • ★★★★★</span></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Australia Modal with Wonders -->
+  <div id="australiaModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <img src="img/australia.jpg" alt="Australia">
+      <h3>Australia</h3>
+      <p>Australia boasts natural wonders and modern landmarks across its vast landscapes.</p>
+
+      <div class="wonder-list">
+        <div class="wonder-card" data-hotels="sydneyOperaHotels">
+          <img src="img/opera.jpg" alt="Sydney Opera House">
+          <h4>Sydney Opera House</h4>
+          <p>World-renowned performing arts center in Sydney Harbour.</p>
+        </div>
+        <div class="wonder-card" data-hotels="greatBarrierHotels">
+          <img src="img/greatbarrier.jpg" alt="Great Barrier Reef">
+          <h4>Great Barrier Reef</h4>
+          <p>The world’s largest coral reef system, teeming with marine life.</p>
+        </div>
+        <div class="wonder-card" data-hotels="uluruHotels">
+          <img src="img/uluru.jpg" alt="Uluru">
+          <h4>Uluru</h4>
+          <p>Sacred sandstone monolith in Australia’s Red Centre.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hotels for Australia Wonders -->
+  <div id="sydneyOperaHotels" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h3>Hotels near Sydney Opera House</h3>
+      <div class="hotels">
+        <div class="hotel"><h5>Harbour View Inn</h5><span>300m away • ★★★★</span></div>
+        <div class="hotel"><h5>Sydney Central Hotel</h5><span>500m away • ★★★</span></div>
+        <div class="hotel"><h5>Luxury Harbour Suites</h5><span>700m away • ★★★★★</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="greatBarrierHotels" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h3>Hotels near Great Barrier Reef</h3>
+      <div class="hotels">
+        <div class="hotel"><h5>Reefside Lodge</h5><span>2km away • ★★★</span></div>
+        <div class="hotel"><h5>Coral View Resort</h5><span>1.5km away • ★★★★</span></div>
+        <div class="hotel"><h5>Great Reef Luxury Hotel</h5><span>3km away • ★★★★★</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="uluruHotels" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h3>Hotels near Uluru</h3>
+      <div class="hotels">
+        <div class="hotel"><h5>Uluru Desert Inn</h5><span>500m away • ★★★</span></div>
+        <div class="hotel"><h5>Red Centre Lodge</h5><span>800m away • ★★★★</span></div>
+        <div class="hotel"><h5>Uluru Grand Resort</h5><span>1.2km away • ★★★★★</span></div>
+      </div>
+    </div>
+  </div>
+
+
+  <footer>
+    <p>Created by: Cabansag, Jeric L. | BSIT 3G</p>
+  </footer>
+
+  <script>
+
+    const cards = document.querySelectorAll('.country-card');
+    const modals = document.querySelectorAll('.modal');
+    const closeBtns = document.querySelectorAll('.close-btn');
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        const modalId = card.getAttribute('data-modal');
+        document.getElementById(modalId).style.display = 'flex';
+      });
+    });
+
+    // Wonder cards open hotel modals
+    const wonderCards = document.querySelectorAll('.wonder-card');
+    wonderCards.forEach(wonder => {
+      wonder.addEventListener('click', () => {
+        const hotelsId = wonder.getAttribute('data-hotels');
+        document.getElementById(hotelsId).style.display = 'flex';
+      });
+    });
+
+    // Close buttons
+    closeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.closest('.modal').style.display = 'none';
+      });
+    });
+
+    // Close on outside click
+    window.addEventListener('click', (e) => {
+      modals.forEach(modal => {
+        if (e.target === modal) {
+          modal.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

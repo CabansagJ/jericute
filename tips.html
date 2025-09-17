@@ -1,0 +1,147 @@
+<!-- tips.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Tips - World Wonders Travel</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .tips-section {
+      padding: 60px 20px;
+      background: url('img/bg3.gif') no-repeat center center/cover;
+      position: relative;
+      color: #fff;
+    }
+    .tips-section::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 86, 179, 0.6);
+      z-index: 0;
+    }
+    .tips-section h1 {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      margin-bottom: 40px;
+      color: #fff;
+      font-size: 2.5rem;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+    }
+    .tips-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .tip-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-align: center;
+    }
+    .tip-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+    .tip-card i {
+      font-size: 2rem;
+      color: #0056b3;
+      margin-bottom: 10px;
+    }
+    .tip-card h3 {
+      margin-bottom: 10px;
+      color: #0056b3;
+    }
+    .tip-card p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+  </style>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">World Wonders</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="countries.html">Countries</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="tips.html" class="active">Travel Tips</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Travel Tips Section -->
+  <section class="tips-section">
+    <h1>Essential Travel Tips</h1>
+    <div class="tips-cards">
+      <div class="tip-card">
+        <i class="fas fa-suitcase-rolling"></i>
+        <h3>1. Pack Light</h3>
+        <p>Bring only what you need. A lighter bag makes travel easier and avoids extra fees.</p>
+      </div>
+      <div class="tip-card">
+        <i class="fas fa-shield-alt"></i>
+        <h3>2. Stay Safe</h3>
+        <p>Keep copies of important documents, avoid showing valuables, and stay alert.</p>
+      </div>
+      <div class="tip-card">
+        <i class="fas fa-sun"></i>
+        <h3>3. Best Time to Travel</h3>
+        <p>Check the best season to visit your destination for good weather and fewer crowds.</p>
+      </div>
+      <div class="tip-card">
+        <i class="fas fa-language"></i>
+        <h3>4. Learn Local Phrases</h3>
+        <p>Knowing simple words in the local language helps you connect with locals.</p>
+      </div>
+      <div class="tip-card">
+        <i class="fas fa-wifi"></i>
+        <h3>5. Stay Connected</h3>
+        <p>Buy a SIM card or Wi-Fi device to stay online and navigate easily.</p>
+      </div>
+      <div class="tip-card">
+        <i class="fas fa-utensils"></i>
+        <h3>6. Try Local Food</h3>
+        <p>Don’t stick to fast food chains—experience authentic flavors of the culture.</p>
+      </div>
+      <div class="tip-card">
+        <i class="fas fa-camera"></i>
+        <h3>7. Capture Memories</h3>
+        <p>Take photos but also take time to enjoy the view without your phone.</p>
+      </div>
+      <div class="tip-card">
+        <i class="fas fa-train"></i>
+        <h3>8. Use Public Transport</h3>
+        <p>It’s cheaper, eco-friendly, and gives you a real taste of local life.</p>
+      </div>
+      <div class="tip-card">
+        <i class="fas fa-map-marked-alt"></i>
+        <h3>9. Plan Ahead</h3>
+        <p>Research attractions, book tickets early, but leave room for spontaneity.</p>
+      </div>
+      <div class="tip-card">
+        <i class="fas fa-smile"></i>
+        <h3>10. Be Respectful</h3>
+        <p>Respect cultural traditions, dress codes, and local customs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>Created by: Cabansag, Jeric L. | BSIT 3G</p>
+  </footer>
+</body>
+</html>
